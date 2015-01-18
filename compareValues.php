@@ -46,6 +46,19 @@ class compareValues{
     private $tot = ""; //Total number of values
     private $dev = ""; //Desired Deviation
     
+    //Constructor
+    public function __construct($values, $deviation, $total){
+        
+        //Set the private variables
+        $this->haystack = $values;
+        $this->tot = $total-1;  //we subtract 1 as the last index will have nothing to compare to
+        $this->dev = $deviation;
+        
+        //call the parse method
+        $this->parse(0, $matches);
+        
+    }
+
     //parse method that will take the current node and compare its values to the others left in the stack
     private function parse($currentNode){ 
         
@@ -76,19 +89,6 @@ class compareValues{
             //Call parse on the next node
             $this->parse($next);
         }
-        
-    }
-    
-    //Constructor
-    public function __construct($values, $deviation, $total){
-        
-        //Set the private variables
-        $this->haystack = $values;
-        $this->tot = $total-1;  //we subtract 1 as the last index will have nothing to compare to
-        $this->dev = $deviation;
-        
-        //call the parse method
-        $this->parse(0, $matches);
         
     }
     
